@@ -1,6 +1,4 @@
 import { Component, signal } from '@angular/core';
-import { LucideAngularModule } from 'lucide-angular';
-import { Recruitments } from './src/components/recruitments/recruitments';
 import { RouterOutlet } from '@angular/router';
 
 @Component({
