@@ -1,0 +1,50 @@
+<div class="px-8">
+  <div class="flex justify-between">
+    <div class="flex items-center gap-2">
+      <div class="bg-white w-fit p-2 shadow-sm border border-slate-100 rounded-xl">
+        <lucide-icon name="UserRoundPlus" [size]="24" color="#3c41e9" />
+      </div>
+      <div>
+        <h1 class="text-[16px] font-bold text-[#0c1420]">Recruitment</h1>
+        <p class="text-[#777a83] text-sm">Manage recruitment process</p>
+      </div>
+    </div>
+    <div>
+      <button class="bg-[#3c41e9] px-4 py-2 text-sm text-white rounded-md flex items-center gap-1">
+        Create New Job
+      </button>
+    </div>
+  </div>
+  <div class="grid grid-cols-3 gap-4 my-6">
+    @for (recruitment of recruitmentList; track $index) {
+      <div
+        class="bg-white p-4 rounded-xl border border-[#dadedf] cursor-pointer"
+        (click)="handleViewRecruitment(recruitment.id)"
+      >
+        <div class="border border-[#dadedf] w-fit px-1.5 py-0.5 rounded-lg">
+          <p class="text-xs">
+            Active until: <span class="text-xs font-bold">{{ recruitment.active_until }}</span>
+          </p>
+        </div>
+        <h2 class="pt-3 font-bold text-sm">{{ recruitment.job_title }}</h2>
+        <p class="text-sm text-[#777a83] pt-3">
+          {{ recruitment.description }}
+        </p>
+        <div class="flex gap-2 pt-5">
+          <div
+            class="w-fit px-2 py-1 border border-[#dadedf] rounded-lg bg-[#b2e9d3] flex items-center gap-1"
+          >
+            <div class="bg-[#12A779] w-2 h-2 rounded-[.2rem]"></div>
+            <p class="text-xs font-medium">{{ recruitment.department }}</p>
+          </div>
+          <div class="w-fit px-1 py-1 border border-[#dadedf] rounded-lg">
+            <p class="text-xs font-medium">{{ recruitment.job_type }}</p>
+          </div>
+          <div class="w-fit px-1 py-1 border border-[#dadedf] rounded-lg">
+            <p class="text-xs font-medium">{{ recruitment.location }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>

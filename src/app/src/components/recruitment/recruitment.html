@@ -1,0 +1,49 @@
+<div>
+  <div class="flex items-center gap-2 cursor-pointer px-8" (click)="handleBack()">
+    <lucide-icon name="chevron-left" color="#777a83" [size]="20"></lucide-icon>
+    <p class="text-sm text-[#777a83]">Back to Job List</p>
+  </div>
+  <div class="border-b border-[#dadedf] pt-3 pb-3 mt-2 px-8">
+    <h2 class="font-bold text-2xl">UI/UX Designer</h2>
+  </div>
+  <div class="bg-white px-8 h-screen">
+    <div class="tabs flex gap-2 mb-2 border-b border-[#dadedf] pt-2">
+      <a
+        routerLink="job-description"
+        routerLinkActive="active-tab"
+        class="flex items-center py-2 px-2 gap-1 cursor-pointer"
+        #rlaJob="routerLinkActive"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <lucide-icon name="pencil" [size]="15" [color]="rlaJob.isActive ? '#3c41e9' : '#777a83'" />
+        <p
+          class="text-xs font-medium"
+          [ngClass]="rlaJob.isActive ? 'text-[#3c41e9]' : 'text-[#777a83]'"
+        >
+          Job Description
+        </p>
+      </a>
+      <a
+        routerLink="candidates"
+        routerLinkActive="active-tab"
+        class="flex items-center py-2 px-2 gap-1 cursor-pointer"
+        [ngClass]="{ 'border-b-2 border-[#3c41e9]': activeTab() === 'candidates' }"
+        #rlaCandidates="routerLinkActive"
+        [routerLinkActiveOptions]="{ exact: true }"
+      >
+        <lucide-icon
+          name="user-round-plus"
+          [size]="15"
+          [color]="rlaCandidates.isActive ? '#3c41e9' : '#777a83'"
+        />
+        <p
+          class="text-xs font-medium"
+          [ngClass]="rlaCandidates.isActive ? 'text-[#3c41e9]' : 'text-[#777a83]'"
+        >
+          Candidates
+        </p>
+      </a>
+    </div>
+    <router-outlet></router-outlet>
+  </div>
+</div>
