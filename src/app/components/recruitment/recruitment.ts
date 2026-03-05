@@ -1,7 +1,21 @@
 import { NgClass } from '@angular/common';
-import { Component, inject, Input, signal, WritableSignal } from '@angular/core';
+import { Component, inject, Input, OnInit, signal, WritableSignal } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { LucideAngularModule } from 'lucide-angular';
+import { RecruitmentsTs } from '../../services/recruitments/recruitments.ts';
+
+interface IRecruitment {
+  id: string;
+  job_title: string;
+  job_type: string;
+  department: string;
+  location: string;
+  description: string;
+  about_company: string;
+  active_until: string;
+  createdAt: string;
+  updatedAt: string;
+}
 
 @Component({
   selector: 'app-recruitment',
@@ -11,23 +25,43 @@ import { LucideAngularModule } from 'lucide-angular';
 })
 export class Recruitment {
   private router = inject(Router);
-  public activeTab: WritableSignal<string> = signal('');
+  private dataService = inject(RecruitmentsTs);
 
-  constructor() {
-    this.activeTab = signal('job_description');
-  }
+  public activeTab: WritableSignal<string> = signal('job_description');
+
+  public loading: WritableSignal<boolean> = signal<boolean>(false);
+
+  public recruitment = this.dataService.selectedRecruitment;
+  public resetCandidate = this.dataService.resetCandidates();
 
   @Input() id?: string;
 
   ngOnInit() {
-    console.log(this.id, 'ID from url');
+    if (this.id) {
+      this.getRecruitment();
+    }
   }
 
   handleBack = () => {
+    this.resetCandidate;
     this.router.navigate(['/recruitment']);
-    console.log('Back to job list clicked');
   };
+
   handleActiveTab = (tab: string) => {
     this.activeTab.set(tab);
   };
+
+  getRecruitment() {
+    this.loading.set(true);
+
+    this.dataService.getRecruitment(this.id as string).subscribe({
+      next: (value) => {
+        this.loading.set(false);
+        this.dataService.setRecruitment(value as IRecruitment);
+      },
+      error: (err) => {
+        this.loading.set(false);
+      },
+    });
+  }
 }
