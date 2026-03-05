@@ -15,4 +15,244 @@
       </button>
     </div>
   </div>
+  <div class="grid grid-cols-5 gap-4 mt-4" cdkDropListGroup>
+    <div class="column-container">
+      <div class="flex items-center justify-between bg-[#fff1d8] p-2 rounded-lg mb-2">
+        <h2 class="text-xs text-[#3e3745]">SOURCED</h2>
+        <p class="text-xs text-white bg-[#f9a604] px-1 py-0.75 rounded-sm">
+          {{ sourced().length }}
+        </p>
+      </div>
+      <div
+        id="sourced"
+        cdkDropList
+        [cdkDropListData]="sourced()"
+        class="min-h-125 rounded-md"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of sourced(); track item) {
+          <div
+            class="bg-white p-2 mb-3 shadow-sm rounded-lg border border-[#cecece] cursor-move"
+            cdkDrag
+          >
+            <div class="flex gap-1 border-b border-[#cecece] pb-3">
+              <img src="https://picsum.photos/200" alt="profile" class="w-7 h-7 rounded-full" />
+              <div>
+                <p class="text-xs font-medium">
+                  {{ item.firstname }}
+                </p>
+                <p class="text-xs font-medium">
+                  {{ item.email }}
+                </p>
+              </div>
+            </div>
+            <div class="pt-2">
+              <a
+                [href]="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                <div class="flex items-baseline gap-1">
+                  <lucide-icon name="linkedin" [size]="13"></lucide-icon>
+                  <p class="text-[11px] font-medium text-[#6c6969]">{{ item.social }}</p>
+                </div>
+              </a>
+              <div></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="column-container">
+      <div class="flex items-center justify-between bg-[#d9e6f9] p-2 rounded-lg mb-2">
+        <h2 class="text-xs text-[#3e3745]">IN PROGRESS</h2>
+        <p class="text-xs text-white bg-[#3e7cdc] px-1 py-0.75 rounded-sm">
+          {{ inProgress().length }}
+        </p>
+      </div>
+      <div
+        id="in_progress"
+        cdkDropList
+        [cdkDropListData]="inProgress()"
+        class="min-h-125 rounded-md"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of inProgress(); track item) {
+          <div
+            class="bg-white p-2 mb-3 shadow-sm rounded-lg border border-[#cecece] cursor-move"
+            cdkDrag
+          >
+            <div class="flex gap-1 border-b border-[#cecece] pb-3">
+              <img src="https://picsum.photos/200" alt="profile" class="w-7 h-7 rounded-full" />
+              <div>
+                <p class="text-xs font-medium">
+                  {{ item.firstname }}
+                </p>
+                <p class="text-xs font-medium">
+                  {{ item.email }}
+                </p>
+              </div>
+            </div>
+            <div class="pt-2">
+              <a
+                [href]="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                <div class="flex items-baseline gap-1">
+                  <lucide-icon name="linkedin" [size]="13"></lucide-icon>
+                  <p class="text-[11px] font-medium text-[#6c6969]">{{ item.social }}</p>
+                </div>
+              </a>
+              <div></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="column-container">
+      <div class="flex items-center justify-between bg-[#eddeff] p-2 rounded-lg mb-2">
+        <h2 class="text-xs text-[#3e3745]">INTERVIEW</h2>
+        <p class="text-xs text-white bg-[#9638f0] px-1 py-0.75 rounded-sm">
+          {{ interview().length }}
+        </p>
+      </div>
+      <div
+        id="interview"
+        cdkDropList
+        [cdkDropListData]="interview()"
+        class="min-h-125 rounded-md"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of interview(); track item) {
+          <div
+            class="bg-white p-2 mb-3 shadow-sm rounded-lg border border-[#cecece] cursor-move"
+            cdkDrag
+          >
+            <div class="flex gap-1 border-b border-[#cecece] pb-3">
+              <img src="https://picsum.photos/200" alt="profile" class="w-7 h-7 rounded-full" />
+              <div>
+                <p class="text-xs font-medium">
+                  {{ item.firstname }}
+                </p>
+                <p class="text-xs font-medium">
+                  {{ item.email }}
+                </p>
+              </div>
+            </div>
+            <div class="pt-2">
+              <a
+                [href]="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                <div class="flex items-baseline gap-1">
+                  <lucide-icon name="linkedin" [size]="13"></lucide-icon>
+                  <p class="text-[11px] font-medium text-[#6c6969]">{{ item.social }}</p>
+                </div>
+              </a>
+              <div></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="column-container">
+      <div class="flex items-center justify-between bg-[#b6ecd8] p-2 rounded-lg mb-2">
+        <h2 class="text-xs text-[#3e3745]">HIRED</h2>
+        <p class="text-xs text-white bg-[#12a575] px-1 py-0.75 rounded-sm">{{ hired().length }}</p>
+      </div>
+      <div
+        id="hired"
+        cdkDropList
+        [cdkDropListData]="hired()"
+        class="min-h-125 rounded-md"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of hired(); track item) {
+          <div
+            class="bg-white p-2 mb-3 shadow-sm rounded-lg border border-[#cecece] cursor-move"
+            cdkDrag
+          >
+            <div class="flex gap-1 border-b border-[#cecece] pb-3">
+              <img src="https://picsum.photos/200" alt="profile" class="w-7 h-7 rounded-full" />
+              <div>
+                <p class="text-xs font-medium">
+                  {{ item.firstname }}
+                </p>
+                <p class="text-xs font-medium">
+                  {{ item.email }}
+                </p>
+              </div>
+            </div>
+            <div class="pt-2">
+              <a
+                [href]="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                <div class="flex items-baseline gap-1">
+                  <lucide-icon name="linkedin" [size]="13"></lucide-icon>
+                  <p class="text-[11px] font-medium text-[#6c6969]">{{ item.social }}</p>
+                </div>
+              </a>
+              <div></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+    <div class="column-container">
+      <div class="flex items-center justify-between bg-[#f8dddd] p-2 rounded-lg mb-2">
+        <h2 class="text-xs text-[#3e3745]">REJECTED</h2>
+        <p class="text-xs text-white bg-[#d62f2f] px-1 py-0.75 rounded-sm">
+          {{ rejected().length }}
+        </p>
+      </div>
+      <div
+        id="rejected"
+        cdkDropList
+        [cdkDropListData]="rejected()"
+        class="min-h-125 rounded-md"
+        (cdkDropListDropped)="drop($event)"
+      >
+        @for (item of rejected(); track item) {
+          <div
+            class="bg-white p-2 mb-3 shadow-sm rounded-lg border border-[#cecece] cursor-move"
+            cdkDrag
+          >
+            <div class="flex gap-1 border-b border-[#cecece] pb-3">
+              <img src="https://picsum.photos/200" alt="profile" class="w-7 h-7 rounded-full" />
+              <div>
+                <p class="text-xs font-medium">
+                  {{ item.firstname }}
+                </p>
+                <p class="text-xs font-medium">
+                  {{ item.email }}
+                </p>
+              </div>
+            </div>
+            <div class="pt-2">
+              <a
+                [href]="item.url"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="hover:underline"
+              >
+                <div class="flex items-baseline gap-1">
+                  <lucide-icon name="linkedin" [size]="13"></lucide-icon>
+                  <p class="text-[11px] font-medium text-[#6c6969]">{{ item.social }}</p>
+                </div>
+              </a>
+              <div></div>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
 </div>

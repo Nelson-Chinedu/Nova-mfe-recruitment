@@ -3,7 +3,8 @@ import {
   importProvidersFrom,
   provideBrowserGlobalErrorListeners,
 } from '@angular/core';
-import { provideRouter } from '@angular/router';
+import { provideRouter, withComponentInputBinding, withRouterConfig } from '@angular/router';
+import { provideNgxSkeletonLoader } from 'ngx-skeleton-loader';
 
 import { routes } from './app.routes';
 import {
@@ -13,14 +14,25 @@ import {
   Pencil,
   SquarePen,
   Plus,
+  Linkedin,
 } from 'lucide-angular';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideBrowserGlobalErrorListeners(),
-    provideRouter(routes),
-    importProvidersFrom(
-      LucideAngularModule.pick({ UserRoundPlus, ChevronLeft, Pencil, SquarePen, Plus }),
+    provideRouter(
+      routes,
+      withComponentInputBinding(),
+      withRouterConfig({ paramsInheritanceStrategy: 'always' }),
     ),
+    importProvidersFrom(
+      LucideAngularModule.pick({ UserRoundPlus, ChevronLeft, Pencil, SquarePen, Plus, Linkedin }),
+    ),
+    provideNgxSkeletonLoader({
+      theme: {
+        extendsFromRoot: true,
+        height: '30px',
+      },
+    }),
   ],
 };
